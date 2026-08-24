@@ -69,7 +69,7 @@ export default function TaproomStudio() {
               <span className="text-amber-400">Without the Headache</span>
             </h1>
             <p className="text-xl text-stone-400 mb-8 max-w-xl leading-relaxed">
-              We design, build, and host a professional site for your brewery — then hand you the keys to update your tap list yourself, anytime, in seconds. No developer. No waiting.
+              We design, build, and host a professional website for your brewery — live in days, not months, with your branding and your own domain.
             </p>
             <div className="flex items-center gap-8 flex-wrap">
               <button
@@ -108,7 +108,7 @@ export default function TaproomStudio() {
           How It Works
         </span>
         <h2 className="text-4xl font-bold mb-4 font-serif">From Sign-Up to Live Site</h2>
-        <p className="text-stone-400 mb-14 max-w-2xl">Three steps, and the only one you'll ever have to repeat is the last one.</p>
+        <p className="text-stone-400 mb-14 max-w-2xl">Three steps, and we handle every one of them with you.</p>
 
         <div className="grid md:grid-cols-3 gap-10">
           <div>
@@ -135,9 +135,9 @@ export default function TaproomStudio() {
             <div className="w-12 h-12 rounded-full border border-amber-500/60 text-amber-400 font-serif text-xl flex items-center justify-center mb-5">
               3
             </div>
-            <h3 className="text-xl font-bold mb-3 font-serif">You Update Your Own Taps</h3>
+            <h3 className="text-xl font-bold mb-3 font-serif">We Keep Your Taps Current</h3>
             <p className="text-stone-400 leading-relaxed">
-              New batch on? Keg kicked? Change your tap list yourself in seconds, right from your phone. No emails, no developer, no waiting.
+              Send us your new tap list whenever it changes and we'll swap it in — included as part of your monthly plan. No logins, no software to learn.
             </p>
           </div>
         </div>
@@ -194,7 +194,7 @@ export default function TaproomStudio() {
                 </div>
                 <div className="flex items-center gap-3">
                   <Check className="text-amber-400 shrink-0" size={20} />
-                  <span>Tap form setup</span>
+                  <span>Tap list setup</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <Check className="text-amber-400 shrink-0" size={20} />
