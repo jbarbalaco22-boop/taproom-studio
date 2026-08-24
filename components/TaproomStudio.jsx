@@ -235,15 +235,6 @@ export default function TaproomStudio() {
         <p className="text-center text-stone-500 text-sm mt-8">
           Extra tap updates beyond 4/month: $25 each.
         </p>
-
-        <div className="text-center mt-10">
-          <button
-            onClick={openRequestModal}
-            className="bg-amber-500 hover:bg-amber-400 text-stone-950 font-bold px-8 py-3.5 rounded-full transition"
-          >
-            Request Prototype
-          </button>
-        </div>
       </section>
 
       {/* CTA */}
