@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { Plus, Trash2, Edit2, ArrowRight, Check, X } from 'lucide-react';
 
 // Where "Request Prototype" leads get sent. Update this to your preferred inbox.
@@ -81,12 +82,13 @@ export default function TaproomStudio() {
       {/* Navigation */}
       <nav className="border-b border-slate-700 bg-slate-900/50 backdrop-blur-sm sticky top-0 z-50">
         <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-          <div className="text-2xl font-bold tracking-tight">
-            <span className="text-amber-500">🍺</span> Taproom Studio
+          <div className="flex items-center gap-2 text-2xl font-bold tracking-tight font-serif">
+            <Image src="/logo-badge.png" alt="Taproom Studio" width={36} height={40} className="h-9 w-auto" priority />
+            Taproom Studio
           </div>
           <button
             onClick={openRequestModal}
-            className="bg-amber-500 hover:bg-amber-600 text-slate-900 font-semibold px-6 py-2 rounded-lg transition"
+            className="bg-amber-600 hover:bg-amber-700 text-slate-900 font-semibold px-6 py-2 rounded-lg transition"
           >
             Request Prototype
           </button>
@@ -96,7 +98,7 @@ export default function TaproomStudio() {
       {/* Hero */}
       <section className="max-w-6xl mx-auto px-6 py-20">
         <div className="text-center mb-16">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+          <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight font-serif">
             Fast, Mobile-First Websites
             <br />
             <span className="text-amber-400">for Craft Breweries</span>
@@ -107,13 +109,13 @@ export default function TaproomStudio() {
           <div className="flex gap-4 justify-center flex-wrap">
             <button
               onClick={() => scrollToId('demo')}
-              className="bg-amber-500 hover:bg-amber-600 text-slate-900 font-semibold px-8 py-3 rounded-lg transition flex items-center gap-2"
+              className="bg-amber-600 hover:bg-amber-700 text-slate-900 font-semibold px-8 py-3 rounded-lg transition flex items-center gap-2"
             >
               See It In Action <ArrowRight size={20} />
             </button>
             <button
               onClick={() => scrollToId('pricing')}
-              className="border border-amber-500 text-amber-400 hover:bg-amber-500/10 font-semibold px-8 py-3 rounded-lg transition"
+              className="border border-amber-600 text-amber-400 hover:bg-amber-600/10 font-semibold px-8 py-3 rounded-lg transition"
             >
               Pricing
             </button>
@@ -139,10 +141,10 @@ export default function TaproomStudio() {
 
       {/* What We're Brewing - Services */}
       <section className="max-w-6xl mx-auto px-6 py-20 border-t border-slate-700">
-        <h2 className="text-4xl font-bold mb-12">What We're Brewing</h2>
+        <h2 className="text-4xl font-bold mb-12 font-serif">What We're Brewing</h2>
         
         <div className="grid md:grid-cols-2 gap-8 mb-16">
-          <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-8 hover:border-amber-500/50 transition">
+          <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-8 hover:border-amber-600/50 transition">
             <h3 className="text-2xl font-bold mb-3">Tap Management Built In</h3>
             <p className="text-slate-300 mb-6">
               No more emailing us to update your tap list. No more waiting. Your site has a built-in update form. You click. Your site updates. Done.
@@ -152,7 +154,7 @@ export default function TaproomStudio() {
             </div>
           </div>
 
-          <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-8 hover:border-amber-500/50 transition">
+          <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-8 hover:border-amber-600/50 transition">
             <h3 className="text-2xl font-bold mb-3">Hosting Included</h3>
             <p className="text-slate-300 mb-6">
               Your site lives on our infrastructure. Fast, secure, reliable. Custom domain ready. You don't touch the backend.
@@ -162,7 +164,7 @@ export default function TaproomStudio() {
             </div>
           </div>
 
-          <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-8 hover:border-amber-500/50 transition">
+          <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-8 hover:border-amber-600/50 transition">
             <h3 className="text-2xl font-bold mb-3">Mobile First, Always</h3>
             <p className="text-slate-300 mb-6">
               Built for phones first. Your customers find you on mobile. Your site works beautifully every time.
@@ -172,7 +174,7 @@ export default function TaproomStudio() {
             </div>
           </div>
 
-          <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-8 hover:border-amber-500/50 transition">
+          <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-8 hover:border-amber-600/50 transition">
             <h3 className="text-2xl font-bold mb-3">Prototype in 3 Minutes</h3>
             <p className="text-slate-300 mb-6">
               Send us your brewery URL. We send back a live prototype. You see exactly what your site will look like before you commit.
@@ -186,7 +188,7 @@ export default function TaproomStudio() {
 
       {/* Tap Management Demo */}
       <section id="demo" className="max-w-6xl mx-auto px-6 py-20 border-t border-slate-700 scroll-mt-20">
-        <h2 className="text-4xl font-bold mb-4">Try It Now</h2>
+        <h2 className="text-4xl font-bold mb-4 font-serif">Try It Now</h2>
         <p className="text-slate-400 mb-12">This is how your brewery manages taps. Simple, fast, no confusion. Try clicking the pencil icon on a tap below, or add a new one.</p>
 
         {/* Current Taps Display */}
@@ -194,7 +196,7 @@ export default function TaproomStudio() {
           <h3 className="text-2xl font-bold mb-6">On Tap</h3>
           <div className="space-y-3">
             {taps.map(tap => (
-              <div key={tap.id} className="flex items-center justify-between bg-slate-900 border border-slate-600 rounded-lg p-4 group hover:border-amber-500/50 transition">
+              <div key={tap.id} className="flex items-center justify-between bg-slate-900 border border-slate-600 rounded-lg p-4 group hover:border-amber-600/50 transition">
                 <div className="flex-1">
                   <div className="font-bold text-lg">{tap.name}</div>
                   <div className="text-sm text-slate-400">{tap.style} • {tap.abv} • {tap.price}</div>
@@ -222,7 +224,7 @@ export default function TaproomStudio() {
         {!showForm ? (
           <button
             onClick={() => setShowForm(true)}
-            className="w-full bg-slate-800/50 border border-dashed border-slate-600 hover:border-amber-500 rounded-lg p-6 text-center transition flex items-center justify-center gap-2 text-slate-300 hover:text-amber-400"
+            className="w-full bg-slate-800/50 border border-dashed border-slate-600 hover:border-amber-600 rounded-lg p-6 text-center transition flex items-center justify-center gap-2 text-slate-300 hover:text-amber-400"
           >
             <Plus size={24} /> Add a Tap
           </button>
@@ -235,34 +237,34 @@ export default function TaproomStudio() {
                 placeholder="Beer Name"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="bg-slate-900 border border-slate-600 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-amber-500 transition"
+                className="bg-slate-900 border border-slate-600 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-amber-600 transition"
               />
               <input
                 type="text"
                 placeholder="Style (IPA, Lager, etc.)"
                 value={formData.style}
                 onChange={(e) => setFormData({ ...formData, style: e.target.value })}
-                className="bg-slate-900 border border-slate-600 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-amber-500 transition"
+                className="bg-slate-900 border border-slate-600 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-amber-600 transition"
               />
               <input
                 type="text"
                 placeholder="ABV %"
                 value={formData.abv}
                 onChange={(e) => setFormData({ ...formData, abv: e.target.value })}
-                className="bg-slate-900 border border-slate-600 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-amber-500 transition"
+                className="bg-slate-900 border border-slate-600 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-amber-600 transition"
               />
               <input
                 type="text"
                 placeholder="Price"
                 value={formData.price}
                 onChange={(e) => setFormData({ ...formData, price: e.target.value })}
-                className="bg-slate-900 border border-slate-600 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-amber-500 transition"
+                className="bg-slate-900 border border-slate-600 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-amber-600 transition"
               />
             </div>
             <div className="flex gap-3">
               <button
                 onClick={handleAddTap}
-                className="flex-1 bg-amber-500 hover:bg-amber-600 text-slate-900 font-semibold py-3 rounded-lg transition"
+                className="flex-1 bg-amber-600 hover:bg-amber-700 text-slate-900 font-semibold py-3 rounded-lg transition"
               >
                 {editingId ? 'Update Tap' : 'Add Tap'}
               </button>
@@ -287,37 +289,71 @@ export default function TaproomStudio() {
 
       {/* Pricing */}
       <section id="pricing" className="max-w-6xl mx-auto px-6 py-20 border-t border-slate-700 scroll-mt-20">
-        <h2 className="text-4xl font-bold mb-12 text-center">Pricing</h2>
+        <h2 className="text-4xl font-bold mb-12 text-center font-serif">Pricing</h2>
 
-        <div className="bg-gradient-to-br from-amber-500/10 to-slate-800/50 border border-amber-500/30 rounded-lg p-12 text-center">
-          <h3 className="text-3xl font-bold mb-4">Standard Plan</h3>
-          <div className="mb-8">
-            <span className="text-5xl font-bold text-amber-400">$499</span>
-            <span className="text-slate-300 text-lg"> flat fee, one time</span>
+        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-10 text-center">
+            <h3 className="text-2xl font-bold mb-2 font-serif">Setup Fee</h3>
+            <p className="text-slate-400 text-sm mb-6">One-time</p>
+            <div className="mb-8">
+              <span className="text-5xl font-bold text-amber-400">$500</span>
+            </div>
+            <div className="text-left space-y-3">
+              <div className="flex items-center gap-3">
+                <Check className="text-amber-400 shrink-0" size={20} />
+                <span>Site design &amp; build</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <Check className="text-amber-400 shrink-0" size={20} />
+                <span>Deployment</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <Check className="text-amber-400 shrink-0" size={20} />
+                <span>Tap form setup</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <Check className="text-amber-400 shrink-0" size={20} />
+                <span>Custom domain configuration</span>
+              </div>
+            </div>
           </div>
 
-          <div className="text-left max-w-xl mx-auto mb-8 space-y-3">
-            <div className="flex items-center gap-3">
-              <Check className="text-amber-400" size={24} />
-              <span>One-time site setup — no recurring fees</span>
+          <div className="bg-gradient-to-br from-amber-600/10 to-slate-800/50 border border-amber-600/30 rounded-lg p-10 text-center">
+            <h3 className="text-2xl font-bold mb-2 font-serif">Monthly Hosting</h3>
+            <p className="text-slate-400 text-sm mb-6">Recurring</p>
+            <div className="mb-8">
+              <span className="text-5xl font-bold text-amber-400">$99</span>
+              <span className="text-slate-300 text-lg">/mo</span>
             </div>
-            <div className="flex items-center gap-3">
-              <Check className="text-amber-400" size={24} />
-              <span>Custom domain included</span>
-            </div>
-            <div className="flex items-center gap-3">
-              <Check className="text-amber-400" size={24} />
-              <span>Hosting + infrastructure</span>
-            </div>
-            <div className="flex items-center gap-3">
-              <Check className="text-amber-400" size={24} />
-              <span>Unlimited tap updates, anytime</span>
+            <div className="text-left space-y-3">
+              <div className="flex items-center gap-3">
+                <Check className="text-amber-400 shrink-0" size={20} />
+                <span>Hosting &amp; infrastructure</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <Check className="text-amber-400 shrink-0" size={20} />
+                <span>Up to 4 tap updates / month</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <Check className="text-amber-400 shrink-0" size={20} />
+                <span>Domain management</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <Check className="text-amber-400 shrink-0" size={20} />
+                <span>Uptime monitoring &amp; email support</span>
+              </div>
             </div>
           </div>
+        </div>
 
+        <p className="text-center text-slate-400 text-sm mt-8">
+          Extra tap updates beyond 4/month: $25 each.
+        </p>
+
+        <div className="text-center mt-10">
           <button
             onClick={openRequestModal}
-            className="bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold px-8 py-3 rounded-lg transition"
+            className="bg-amber-600 hover:bg-amber-700 text-slate-900 font-bold px-8 py-3 rounded-lg transition"
           >
             Request Prototype
           </button>
@@ -326,11 +362,11 @@ export default function TaproomStudio() {
 
       {/* CTA */}
       <section className="max-w-6xl mx-auto px-6 py-20 border-t border-slate-700 text-center">
-        <h2 className="text-4xl font-bold mb-6">Ready to see your brewery live?</h2>
+        <h2 className="text-4xl font-bold mb-6 font-serif">Ready to see your brewery live?</h2>
         <p className="text-xl text-slate-300 mb-8">Send us your brewery URL. We'll send back a prototype in 3 minutes.</p>
         <button
           onClick={openRequestModal}
-          className="bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold px-8 py-4 rounded-lg text-lg transition"
+          className="bg-amber-600 hover:bg-amber-700 text-slate-900 font-bold px-8 py-4 rounded-lg text-lg transition"
         >
           Request Your Prototype →
         </button>
@@ -380,7 +416,7 @@ export default function TaproomStudio() {
                       placeholder="e.g. yourbrewery.com"
                       value={requestForm.breweryUrl}
                       onChange={(e) => setRequestForm({ ...requestForm, breweryUrl: e.target.value })}
-                      className="w-full bg-slate-900 border border-slate-600 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-amber-500 transition"
+                      className="w-full bg-slate-900 border border-slate-600 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-amber-600 transition"
                     />
                   </div>
                   <div>
@@ -394,12 +430,12 @@ export default function TaproomStudio() {
                       placeholder="you@yourbrewery.com"
                       value={requestForm.email}
                       onChange={(e) => setRequestForm({ ...requestForm, email: e.target.value })}
-                      className="w-full bg-slate-900 border border-slate-600 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-amber-500 transition"
+                      className="w-full bg-slate-900 border border-slate-600 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-amber-600 transition"
                     />
                   </div>
                   <button
                     type="submit"
-                    className="w-full bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold py-3 rounded-lg transition"
+                    className="w-full bg-amber-600 hover:bg-amber-700 text-slate-900 font-bold py-3 rounded-lg transition"
                   >
                     Send Request
                   </button>
