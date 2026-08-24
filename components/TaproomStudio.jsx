@@ -44,7 +44,7 @@ export default function TaproomStudio() {
       <nav className="border-b border-stone-800 bg-stone-950/80 backdrop-blur-sm sticky top-0 z-50">
         <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
           <div className="flex items-center gap-2 text-2xl font-bold tracking-tight font-serif">
-            <Image src="/logo-mark.png" alt="Taproom Studio" width={40} height={40} className="h-9 w-auto" priority />
+            <Image src="/logo-badge.png" alt="Taproom Studio" width={420} height={480} className="h-11 w-auto" priority />
             Taproom Studio
           </div>
           <button
