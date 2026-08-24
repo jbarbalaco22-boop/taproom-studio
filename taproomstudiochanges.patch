@@ -1,0 +1,247 @@
+diff --git a/components/TaproomStudio.jsx b/components/TaproomStudio.jsx
+index 5a78e31..c35d1ea 100644
+--- a/components/TaproomStudio.jsx
++++ b/components/TaproomStudio.jsx
+@@ -1,5 +1,8 @@
+ import React, { useState } from 'react';
+-import { Plus, Trash2, Edit2, ArrowRight, Check } from 'lucide-react';
++import { Plus, Trash2, Edit2, ArrowRight, Check, X } from 'lucide-react';
++
++// Where "Request Prototype" leads get sent. Update this to your preferred inbox.
++const CONTACT_EMAIL = 'jbarbalaco22@gmail.com';
+ 
+ export default function TaproomStudio() {
+   const [taps, setTaps] = useState([
+@@ -18,6 +21,38 @@ export default function TaproomStudio() {
+   const [editingId, setEditingId] = useState(null);
+   const [showForm, setShowForm] = useState(false);
+ 
++  // Request Prototype modal state
++  const [showRequestModal, setShowRequestModal] = useState(false);
++  const [requestSent, setRequestSent] = useState(false);
++  const [requestForm, setRequestForm] = useState({ breweryUrl: '', email: '' });
++
++  const openRequestModal = () => {
++    setRequestSent(false);
++    setShowRequestModal(true);
++  };
++
++  const closeRequestModal = () => {
++    setShowRequestModal(false);
++    setRequestSent(false);
++    setRequestForm({ breweryUrl: '', email: '' });
++  };
++
++  const handleRequestSubmit = (e) => {
++    e.preventDefault();
++    if (!requestForm.breweryUrl || !requestForm.email) return;
++
++    const subject = `Prototype Request: ${requestForm.breweryUrl}`;
++    const body = `Brewery URL: ${requestForm.breweryUrl}\nContact email: ${requestForm.email}`;
++    const mailtoLink = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
++
++    window.location.href = mailtoLink;
++    setRequestSent(true);
++  };
++
++  const scrollToId = (id) => {
++    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
++  };
++
+   const handleAddTap = () => {
+     if (formData.name && formData.style) {
+       if (editingId) {
+@@ -49,7 +84,10 @@ export default function TaproomStudio() {
+           <div className="text-2xl font-bold tracking-tight">
+             <span className="text-amber-500">🍺</span> Taproom Studio
+           </div>
+-          <button className="bg-amber-500 hover:bg-amber-600 text-slate-900 font-semibold px-6 py-2 rounded-lg transition">
++          <button
++            onClick={openRequestModal}
++            className="bg-amber-500 hover:bg-amber-600 text-slate-900 font-semibold px-6 py-2 rounded-lg transition"
++          >
+             Request Prototype
+           </button>
+         </div>
+@@ -67,10 +105,16 @@ export default function TaproomStudio() {
+             We build beautiful brewery websites in minutes. You manage tap lists with a single click. No coding. No confusion. Just a site that works.
+           </p>
+           <div className="flex gap-4 justify-center flex-wrap">
+-            <button className="bg-amber-500 hover:bg-amber-600 text-slate-900 font-semibold px-8 py-3 rounded-lg transition flex items-center gap-2">
++            <button
++              onClick={() => scrollToId('demo')}
++              className="bg-amber-500 hover:bg-amber-600 text-slate-900 font-semibold px-8 py-3 rounded-lg transition flex items-center gap-2"
++            >
+               See It In Action <ArrowRight size={20} />
+             </button>
+-            <button className="border border-amber-500 text-amber-400 hover:bg-amber-500/10 font-semibold px-8 py-3 rounded-lg transition">
++            <button
++              onClick={() => scrollToId('pricing')}
++              className="border border-amber-500 text-amber-400 hover:bg-amber-500/10 font-semibold px-8 py-3 rounded-lg transition"
++            >
+               Pricing
+             </button>
+           </div>
+@@ -141,9 +185,9 @@ export default function TaproomStudio() {
+       </section>
+ 
+       {/* Tap Management Demo */}
+-      <section className="max-w-6xl mx-auto px-6 py-20 border-t border-slate-700">
++      <section id="demo" className="max-w-6xl mx-auto px-6 py-20 border-t border-slate-700 scroll-mt-20">
+         <h2 className="text-4xl font-bold mb-4">Try It Now</h2>
+-        <p className="text-slate-400 mb-12">This is how your brewery manages taps. Simple, fast, no confusion.</p>
++        <p className="text-slate-400 mb-12">This is how your brewery manages taps. Simple, fast, no confusion. Try clicking the pencil icon on a tap below, or add a new one.</p>
+ 
+         {/* Current Taps Display */}
+         <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-8 mb-8">
+@@ -242,20 +286,20 @@ export default function TaproomStudio() {
+       </section>
+ 
+       {/* Pricing */}
+-      <section className="max-w-6xl mx-auto px-6 py-20 border-t border-slate-700">
++      <section id="pricing" className="max-w-6xl mx-auto px-6 py-20 border-t border-slate-700 scroll-mt-20">
+         <h2 className="text-4xl font-bold mb-12 text-center">Pricing</h2>
+-        
++
+         <div className="bg-gradient-to-br from-amber-500/10 to-slate-800/50 border border-amber-500/30 rounded-lg p-12 text-center">
+           <h3 className="text-3xl font-bold mb-4">Standard Plan</h3>
+           <div className="mb-8">
+-            <span className="text-5xl font-bold text-amber-400">$X</span>
+-            <span className="text-slate-300 text-lg"> + $X/month</span>
++            <span className="text-5xl font-bold text-amber-400">$499</span>
++            <span className="text-slate-300 text-lg"> flat fee, one time</span>
+           </div>
+-          
++
+           <div className="text-left max-w-xl mx-auto mb-8 space-y-3">
+             <div className="flex items-center gap-3">
+               <Check className="text-amber-400" size={24} />
+-              <span>One-time site setup</span>
++              <span>One-time site setup — no recurring fees</span>
+             </div>
+             <div className="flex items-center gap-3">
+               <Check className="text-amber-400" size={24} />
+@@ -267,15 +311,14 @@ export default function TaproomStudio() {
+             </div>
+             <div className="flex items-center gap-3">
+               <Check className="text-amber-400" size={24} />
+-              <span>Up to 4 tap updates/month</span>
+-            </div>
+-            <div className="flex items-center gap-3">
+-              <Check className="text-amber-400" size={24} />
+-              <span>Additional updates: $X each</span>
++              <span>Unlimited tap updates, anytime</span>
+             </div>
+           </div>
+ 
+-          <button className="bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold px-8 py-3 rounded-lg transition">
++          <button
++            onClick={openRequestModal}
++            className="bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold px-8 py-3 rounded-lg transition"
++          >
+             Request Prototype
+           </button>
+         </div>
+@@ -285,7 +328,10 @@ export default function TaproomStudio() {
+       <section className="max-w-6xl mx-auto px-6 py-20 border-t border-slate-700 text-center">
+         <h2 className="text-4xl font-bold mb-6">Ready to see your brewery live?</h2>
+         <p className="text-xl text-slate-300 mb-8">Send us your brewery URL. We'll send back a prototype in 3 minutes.</p>
+-        <button className="bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold px-8 py-4 rounded-lg text-lg transition">
++        <button
++          onClick={openRequestModal}
++          className="bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold px-8 py-4 rounded-lg text-lg transition"
++        >
+           Request Your Prototype →
+         </button>
+       </section>
+@@ -297,6 +343,90 @@ export default function TaproomStudio() {
+           <p className="text-sm mt-2">© 2026 Taproom Studio. All rights reserved.</p>
+         </div>
+       </footer>
++
++      {/* Request Prototype Modal */}
++      {showRequestModal && (
++        <div
++          className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4"
++          onClick={closeRequestModal}
++        >
++          <div
++            className="bg-slate-800 border border-slate-600 rounded-lg p-8 max-w-md w-full relative"
++            onClick={(e) => e.stopPropagation()}
++          >
++            <button
++              onClick={closeRequestModal}
++              className="absolute top-4 right-4 text-slate-400 hover:text-white transition"
++              aria-label="Close"
++            >
++              <X size={22} />
++            </button>
++
++            {!requestSent ? (
++              <>
++                <h3 className="text-2xl font-bold mb-2">Request Your Prototype</h3>
++                <p className="text-slate-400 mb-6">
++                  Send us your brewery's URL and we'll get back to you with a live prototype in 3 minutes.
++                </p>
++                <form onSubmit={handleRequestSubmit} className="space-y-4">
++                  <div>
++                    <label className="block text-sm text-slate-300 mb-1" htmlFor="breweryUrl">
++                      Your brewery's website or Facebook/Instagram URL
++                    </label>
++                    <input
++                      id="breweryUrl"
++                      type="text"
++                      required
++                      placeholder="e.g. yourbrewery.com"
++                      value={requestForm.breweryUrl}
++                      onChange={(e) => setRequestForm({ ...requestForm, breweryUrl: e.target.value })}
++                      className="w-full bg-slate-900 border border-slate-600 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-amber-500 transition"
++                    />
++                  </div>
++                  <div>
++                    <label className="block text-sm text-slate-300 mb-1" htmlFor="contactEmail">
++                      Your email
++                    </label>
++                    <input
++                      id="contactEmail"
++                      type="email"
++                      required
++                      placeholder="you@yourbrewery.com"
++                      value={requestForm.email}
++                      onChange={(e) => setRequestForm({ ...requestForm, email: e.target.value })}
++                      className="w-full bg-slate-900 border border-slate-600 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-amber-500 transition"
++                    />
++                  </div>
++                  <button
++                    type="submit"
++                    className="w-full bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold py-3 rounded-lg transition"
++                  >
++                    Send Request
++                  </button>
++                </form>
++              </>
++            ) : (
++              <>
++                <h3 className="text-2xl font-bold mb-2">Almost there!</h3>
++                <p className="text-slate-300 mb-6">
++                  We opened your email app with the request pre-filled — just hit send. If nothing opened, email us
++                  directly at{' '}
++                  <a href={`mailto:${CONTACT_EMAIL}`} className="text-amber-400 underline">
++                    {CONTACT_EMAIL}
++                  </a>
++                  .
++                </p>
++                <button
++                  onClick={closeRequestModal}
++                  className="w-full bg-slate-700 hover:bg-slate-600 text-white font-semibold py-3 rounded-lg transition"
++                >
++                  Close
++                </button>
++              </>
++            )}
++          </div>
++        </div>
++      )}
+     </div>
+   );
+ }
