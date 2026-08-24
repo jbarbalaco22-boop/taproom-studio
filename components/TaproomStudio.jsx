@@ -1,0 +1,302 @@
+import React, { useState } from 'react';
+import { Plus, Trash2, Edit2, ArrowRight, Check } from 'lucide-react';
+
+export default function TaproomStudio() {
+  const [taps, setTaps] = useState([
+    { id: 1, name: 'Fast Prototypes', style: 'Live Site', abv: 'In 3 min', price: 'Included' },
+    { id: 2, name: 'Mobile-First Design', style: 'Built for phones', abv: 'First', price: 'Included' },
+    { id: 3, name: 'Tap Management', style: 'Brewery controls', abv: 'Updates', price: 'Included' },
+  ]);
+
+  const [formData, setFormData] = useState({
+    name: '',
+    style: '',
+    abv: '',
+    price: '',
+  });
+
+  const [editingId, setEditingId] = useState(null);
+  const [showForm, setShowForm] = useState(false);
+
+  const handleAddTap = () => {
+    if (formData.name && formData.style) {
+      if (editingId) {
+        setTaps(taps.map(t => t.id === editingId ? { ...formData, id: editingId } : t));
+        setEditingId(null);
+      } else {
+        setTaps([...taps, { ...formData, id: Date.now() }]);
+      }
+      setFormData({ name: '', style: '', abv: '', price: '' });
+      setShowForm(false);
+    }
+  };
+
+  const handleEdit = (tap) => {
+    setFormData(tap);
+    setEditingId(tap.id);
+    setShowForm(true);
+  };
+
+  const handleDelete = (id) => {
+    setTaps(taps.filter(t => t.id !== id));
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white font-sans">
+      {/* Navigation */}
+      <nav className="border-b border-slate-700 bg-slate-900/50 backdrop-blur-sm sticky top-0 z-50">
+        <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+          <div className="text-2xl font-bold tracking-tight">
+            <span className="text-amber-500">🍺</span> Taproom Studio
+          </div>
+          <button className="bg-amber-500 hover:bg-amber-600 text-slate-900 font-semibold px-6 py-2 rounded-lg transition">
+            Request Prototype
+          </button>
+        </div>
+      </nav>
+
+      {/* Hero */}
+      <section className="max-w-6xl mx-auto px-6 py-20">
+        <div className="text-center mb-16">
+          <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+            Fast, Mobile-First Websites
+            <br />
+            <span className="text-amber-400">for Craft Breweries</span>
+          </h1>
+          <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto leading-relaxed">
+            We build beautiful brewery websites in minutes. You manage tap lists with a single click. No coding. No confusion. Just a site that works.
+          </p>
+          <div className="flex gap-4 justify-center flex-wrap">
+            <button className="bg-amber-500 hover:bg-amber-600 text-slate-900 font-semibold px-8 py-3 rounded-lg transition flex items-center gap-2">
+              See It In Action <ArrowRight size={20} />
+            </button>
+            <button className="border border-amber-500 text-amber-400 hover:bg-amber-500/10 font-semibold px-8 py-3 rounded-lg transition">
+              Pricing
+            </button>
+          </div>
+        </div>
+
+        {/* Stats */}
+        <div className="grid grid-cols-3 gap-4 md:gap-8 text-center mb-20">
+          <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-6">
+            <div className="text-4xl font-bold text-amber-400">3</div>
+            <div className="text-sm text-slate-400 mt-2">Minutes to Live</div>
+          </div>
+          <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-6">
+            <div className="text-4xl font-bold text-amber-400">1</div>
+            <div className="text-sm text-slate-400 mt-2">Click to Update</div>
+          </div>
+          <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-6">
+            <div className="text-4xl font-bold text-amber-400">∞</div>
+            <div className="text-sm text-slate-400 mt-2">Mobile-First</div>
+          </div>
+        </div>
+      </section>
+
+      {/* What We're Brewing - Services */}
+      <section className="max-w-6xl mx-auto px-6 py-20 border-t border-slate-700">
+        <h2 className="text-4xl font-bold mb-12">What We're Brewing</h2>
+        
+        <div className="grid md:grid-cols-2 gap-8 mb-16">
+          <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-8 hover:border-amber-500/50 transition">
+            <h3 className="text-2xl font-bold mb-3">Tap Management Built In</h3>
+            <p className="text-slate-300 mb-6">
+              No more emailing us to update your tap list. No more waiting. Your site has a built-in update form. You click. Your site updates. Done.
+            </p>
+            <div className="text-amber-400 font-semibold flex items-center gap-2">
+              <Check size={20} /> Brewery Controls Everything
+            </div>
+          </div>
+
+          <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-8 hover:border-amber-500/50 transition">
+            <h3 className="text-2xl font-bold mb-3">Hosting Included</h3>
+            <p className="text-slate-300 mb-6">
+              Your site lives on our infrastructure. Fast, secure, reliable. Custom domain ready. You don't touch the backend.
+            </p>
+            <div className="text-amber-400 font-semibold flex items-center gap-2">
+              <Check size={20} /> We Handle the Ops
+            </div>
+          </div>
+
+          <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-8 hover:border-amber-500/50 transition">
+            <h3 className="text-2xl font-bold mb-3">Mobile First, Always</h3>
+            <p className="text-slate-300 mb-6">
+              Built for phones first. Your customers find you on mobile. Your site works beautifully every time.
+            </p>
+            <div className="text-amber-400 font-semibold flex items-center gap-2">
+              <Check size={20} /> 97% Mobile Traffic
+            </div>
+          </div>
+
+          <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-8 hover:border-amber-500/50 transition">
+            <h3 className="text-2xl font-bold mb-3">Prototype in 3 Minutes</h3>
+            <p className="text-slate-300 mb-6">
+              Send us your brewery URL. We send back a live prototype. You see exactly what your site will look like before you commit.
+            </p>
+            <div className="text-amber-400 font-semibold flex items-center gap-2">
+              <Check size={20} /> No Surprises
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Tap Management Demo */}
+      <section className="max-w-6xl mx-auto px-6 py-20 border-t border-slate-700">
+        <h2 className="text-4xl font-bold mb-4">Try It Now</h2>
+        <p className="text-slate-400 mb-12">This is how your brewery manages taps. Simple, fast, no confusion.</p>
+
+        {/* Current Taps Display */}
+        <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-8 mb-8">
+          <h3 className="text-2xl font-bold mb-6">On Tap</h3>
+          <div className="space-y-3">
+            {taps.map(tap => (
+              <div key={tap.id} className="flex items-center justify-between bg-slate-900 border border-slate-600 rounded-lg p-4 group hover:border-amber-500/50 transition">
+                <div className="flex-1">
+                  <div className="font-bold text-lg">{tap.name}</div>
+                  <div className="text-sm text-slate-400">{tap.style} • {tap.abv} • {tap.price}</div>
+                </div>
+                <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition">
+                  <button 
+                    onClick={() => handleEdit(tap)}
+                    className="p-2 hover:bg-slate-700 rounded transition"
+                  >
+                    <Edit2 size={18} className="text-amber-400" />
+                  </button>
+                  <button 
+                    onClick={() => handleDelete(tap.id)}
+                    className="p-2 hover:bg-slate-700 rounded transition"
+                  >
+                    <Trash2 size={18} className="text-red-400" />
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Add/Edit Tap Form */}
+        {!showForm ? (
+          <button
+            onClick={() => setShowForm(true)}
+            className="w-full bg-slate-800/50 border border-dashed border-slate-600 hover:border-amber-500 rounded-lg p-6 text-center transition flex items-center justify-center gap-2 text-slate-300 hover:text-amber-400"
+          >
+            <Plus size={24} /> Add a Tap
+          </button>
+        ) : (
+          <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-8">
+            <h3 className="text-xl font-bold mb-6">{editingId ? 'Edit Tap' : 'Add a New Tap'}</h3>
+            <div className="grid md:grid-cols-2 gap-4 mb-6">
+              <input
+                type="text"
+                placeholder="Beer Name"
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                className="bg-slate-900 border border-slate-600 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-amber-500 transition"
+              />
+              <input
+                type="text"
+                placeholder="Style (IPA, Lager, etc.)"
+                value={formData.style}
+                onChange={(e) => setFormData({ ...formData, style: e.target.value })}
+                className="bg-slate-900 border border-slate-600 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-amber-500 transition"
+              />
+              <input
+                type="text"
+                placeholder="ABV %"
+                value={formData.abv}
+                onChange={(e) => setFormData({ ...formData, abv: e.target.value })}
+                className="bg-slate-900 border border-slate-600 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-amber-500 transition"
+              />
+              <input
+                type="text"
+                placeholder="Price"
+                value={formData.price}
+                onChange={(e) => setFormData({ ...formData, price: e.target.value })}
+                className="bg-slate-900 border border-slate-600 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-amber-500 transition"
+              />
+            </div>
+            <div className="flex gap-3">
+              <button
+                onClick={handleAddTap}
+                className="flex-1 bg-amber-500 hover:bg-amber-600 text-slate-900 font-semibold py-3 rounded-lg transition"
+              >
+                {editingId ? 'Update Tap' : 'Add Tap'}
+              </button>
+              <button
+                onClick={() => {
+                  setShowForm(false);
+                  setEditingId(null);
+                  setFormData({ name: '', style: '', abv: '', price: '' });
+                }}
+                className="flex-1 bg-slate-700 hover:bg-slate-600 text-white font-semibold py-3 rounded-lg transition"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        )}
+
+        <p className="text-slate-400 text-sm mt-8 text-center">
+          ↑ This is exactly how your brewery updates their site. No training needed. No support tickets.
+        </p>
+      </section>
+
+      {/* Pricing */}
+      <section className="max-w-6xl mx-auto px-6 py-20 border-t border-slate-700">
+        <h2 className="text-4xl font-bold mb-12 text-center">Pricing</h2>
+        
+        <div className="bg-gradient-to-br from-amber-500/10 to-slate-800/50 border border-amber-500/30 rounded-lg p-12 text-center">
+          <h3 className="text-3xl font-bold mb-4">Standard Plan</h3>
+          <div className="mb-8">
+            <span className="text-5xl font-bold text-amber-400">$X</span>
+            <span className="text-slate-300 text-lg"> + $X/month</span>
+          </div>
+          
+          <div className="text-left max-w-xl mx-auto mb-8 space-y-3">
+            <div className="flex items-center gap-3">
+              <Check className="text-amber-400" size={24} />
+              <span>One-time site setup</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <Check className="text-amber-400" size={24} />
+              <span>Custom domain included</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <Check className="text-amber-400" size={24} />
+              <span>Hosting + infrastructure</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <Check className="text-amber-400" size={24} />
+              <span>Up to 4 tap updates/month</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <Check className="text-amber-400" size={24} />
+              <span>Additional updates: $X each</span>
+            </div>
+          </div>
+
+          <button className="bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold px-8 py-3 rounded-lg transition">
+            Request Prototype
+          </button>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="max-w-6xl mx-auto px-6 py-20 border-t border-slate-700 text-center">
+        <h2 className="text-4xl font-bold mb-6">Ready to see your brewery live?</h2>
+        <p className="text-xl text-slate-300 mb-8">Send us your brewery URL. We'll send back a prototype in 3 minutes.</p>
+        <button className="bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold px-8 py-4 rounded-lg text-lg transition">
+          Request Your Prototype →
+        </button>
+      </section>
+
+      {/* Footer */}
+      <footer className="border-t border-slate-700 bg-slate-900/50 py-12 mt-20">
+        <div className="max-w-6xl mx-auto px-6 text-center text-slate-400">
+          <p>Taproom Studio • Websites built for breweries, by people who get it</p>
+          <p className="text-sm mt-2">© 2026 Taproom Studio. All rights reserved.</p>
+        </div>
+      </footer>
+    </div>
+  );
+}
