@@ -44,7 +44,7 @@ export default function TaproomStudio() {
       <nav className="border-b border-stone-800 bg-stone-950/80 backdrop-blur-sm sticky top-0 z-50">
         <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
           <div className="flex items-center gap-2 text-2xl font-bold tracking-tight font-serif">
-            <Image src="/logo-badge.png" alt="Taproom Studio" width={36} height={40} className="h-9 w-auto" priority />
+            <Image src="/logo-mark.png" alt="Taproom Studio" width={40} height={40} className="h-9 w-auto" priority />
             Taproom Studio
           </div>
           <button
@@ -165,7 +165,7 @@ export default function TaproomStudio() {
           <div className="border-t border-stone-800 pt-6">
             <h3 className="text-xl font-bold mb-3 font-serif">Fully Managed</h3>
             <p className="text-stone-400 leading-relaxed">
-              Hosting, uptime monitoring, domain management, and support are all included in your monthly plan. One person to call, not five.
+              Hosting, uptime monitoring, domain management, and support are all included in your monthly plan. One place to reach out, not five vendors to manage.
             </p>
           </div>
         </div>
