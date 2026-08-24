@@ -8,7 +8,7 @@ export const metadata = {
   title: 'Taproom Studio - Fast Brewery Websites',
   description: 'Mobile-first websites for craft breweries. Built in 3 minutes. Managed by you.',
   viewport: 'width=device-width, initial-scale=1',
-  themeColor: '#1e293b',
+  themeColor: '#0c0a09',
 }
 
 export default function RootLayout({ children }) {
